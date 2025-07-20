@@ -11,10 +11,9 @@ function App() {
   const [callResult, setCallResult] = useState(null);
   const [loadingResult, setLoadingResult] = useState(false);
 
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  const [topics, setTopics] = useState("");
+  const [userWellnessProfile, setuserWellnessProfile] = useState("");
 
   useEffect(() => {
     vapi
@@ -38,13 +37,18 @@ function App() {
   }, []);
 
   const handleInputChange = (setter) => (event) => {
-    setter(event.target.value);
+    setter(event.target.value.replace(/\n/g, ""));
   };
 
   const handleStart = async () => {
     setLoading(true);
-    const data = await startAssistant(firstName, lastName, email, phoneNumber);
-    setCallId(data.id);
+    try {
+      const data = await startAssistant(name, topics, userWellnessProfile);
+      console.log('data :', data)
+      setCallId(data.id);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   const handleStop = () => {
@@ -69,40 +73,33 @@ function App() {
   };
 
   const showForm = !loading && !started && !loadingResult && !callResult;
-  const allFieldsFilled = firstName && lastName && email && phoneNumber;
+  const allFieldsFilled = name && topics && userWellnessProfile;
 
   return (
     <div className="app-container">
       {showForm && (
         <>
-          <h1>Contact Details (Required)</h1>
+          <h1>Wellbody AI Voice Assistant</h1>
           <input
             type="text"
-            placeholder="First Name"
-            value={firstName}
+            placeholder="Name"
+            value={name}
             className="input-field"
-            onChange={handleInputChange(setFirstName)}
+            onChange={handleInputChange(setName)}
           />
-          <input
+          <textarea
             type="text"
-            placeholder="Last Name"
-            value={lastName}
-            className="input-field"
-            onChange={handleInputChange(setLastName)}
+            placeholder="Enter comma separated topics"
+            value={topics}
+            className="input-field-topics"
+            onChange={handleInputChange(setTopics)}
           />
-          <input
-            type="email"
-            placeholder="Email address"
-            value={email}
-            className="input-field"
-            onChange={handleInputChange(setEmail)}
-          />
-          <input
-            type="tel"
-            placeholder="Phone number"
-            value={phoneNumber}
-            className="input-field"
-            onChange={handleInputChange(setPhoneNumber)}
+          <textarea
+            type="text"
+            placeholder="user wellness profile including workout , nutrition and slepp pattern"
+            value={userWellnessProfile}
+            className="input-field-userwellness-profile"
+            onChange={handleInputChange(setuserWellnessProfile)}
           />
           {!started && (
             <button
@@ -118,7 +115,10 @@ function App() {
       {loadingResult && <p>Loading call details... please wait</p>}
       {!loadingResult && callResult && (
         <div className="call-result">
-          <p>Qualified: {callResult.analysis.structuredData.is_qualified.toString()}</p>
+          <p>
+            Qualified:{" "}
+            {callResult.analysis.structuredData.is_qualified.toString()}
+          </p>
           <p>{callResult.summary}</p>
         </div>
       )}
