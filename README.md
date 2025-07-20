@@ -102,9 +102,13 @@ Start the frontend:
 ```
 npm run dev
 ```
+
 Open http://localhost:5173 in your browser.
 
+
+
 ⚙️ Usage
+
 Sign in or register
 
 Launch a wellness voice session
@@ -113,7 +117,10 @@ Receive AI-generated summaries post-call
 
 (WIP) Admins can review anonymized trends and export data
 
+
+
 🤝 Contributing
+
 Contributions are welcome:
 
 Fork the repository
@@ -124,17 +131,26 @@ Commit your changes
 
 Push and open a pull request
 
+
+
 💡 Acknowledgements
+
 Core voice technology by Vapi.ai
 
 Project idea inspired by mental health tech initiatives and voice-first AI coaching
 
 Based on enhancements to the VoIP-AI-Assistant open-source base
 
+
+
 📄 License
+
 Licensed under the MIT License — see LICENSE for more info.
 
+
+
 🧭 Roadmap
+
 ✅ Core voice session and summary
 
 ✅Topic-based session types (e.g., stress, focus, gratitude)
