@@ -16,7 +16,7 @@ export const startAssistant = async (name, topics, userWellnessProfile) => {
         userWellnessProfile,
       },
     };
-    return await vapi.start({workflow:workflowId});
+    return await vapi.start(workflowId, workflowOverrides);
   } catch (err) {
     console.log(err);
   }
