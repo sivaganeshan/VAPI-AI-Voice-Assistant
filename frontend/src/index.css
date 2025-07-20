@@ -5,12 +5,13 @@
 
   color-scheme: dark;
   color: rgba(255, 255, 255, 0.87);
-  background-color: #121212;
+  background-color: #0f0e0e;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  overflow: scroll;
 }
 
 a {
@@ -29,10 +30,10 @@ body {
   align-items: center;
   min-width: 320px;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1a1a1a, #333);
-  color: #ffffff;
+  /* background: linear-gradient(135deg, #1a1a1a, #333); */
+  /* color: #ffffff; */
   font-family: 'Inter', sans-serif;
-  overflow: hidden;
+  overflow: scroll;
 }
 
 h1 {
@@ -76,9 +77,9 @@ button:focus-visible {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background-color: #1e1e1e;
-  color: #ffffff;
-  overflow: hidden;
+  /* background-color: #1e1e1e; */
+  /* color: #ffffff; */
+  overflow: scroll;
 }
 
 .input-field {
@@ -319,4 +320,17 @@ button:focus-visible {
   button {
     background-color: #f9f9f9;
   }
+}
+
+.flex-allign-horizontally{
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  flex-wrap: wrap;
+  width : 90%;
+}
+
+.flex-items{
+  display: flex;
+  /* background-image: url(./images/fitness-goals.jpg); */
 }
